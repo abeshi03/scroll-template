@@ -4,11 +4,16 @@ import React, { memo, VFC } from "react";
 // - アセット ============================================================================================================
 import styles from "./Card.module.scss";
 
+type Props = {
+  className?: string;
+}
 
-export const Card: VFC = memo((props) => {
+export const Card: VFC<Props> = memo((props) => {
+
+  const { className } = props;
 
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${className}`}>
 
       <div
         className={styles.thumbnail}
