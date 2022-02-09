@@ -55,8 +55,6 @@ export const CardsFlow: VFC = memo(() => {
 
   useEffect(() => {
     scrollingContainer = ref!.current!;
-    console.log(scrollingContainer.scrollLeft);
-    console.log(scrollingContainer.clientWidth);
   },[ isDisplayScrollingRightButton, isDisplayScrollingLeftButton ])
 
   return (
