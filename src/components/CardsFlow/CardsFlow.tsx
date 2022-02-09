@@ -17,34 +17,32 @@ export const CardsFlow: VFC = memo(() => {
   const [ isDisplayScrollingLeftButton, setIsDisplayScrollingLeftButton ] = useState(false);
 
 
-  let scrollContainer!: HTMLDivElement;
+  let scrollingContainer!: HTMLDivElement;
 
   const scrollLeft = (): void => {
-    scrollContainer.scroll({
-      left: scrollContainer.scrollLeft - scrollContainer.clientWidth,
+    scrollingContainer.scroll({
+      left: scrollingContainer.scrollLeft - scrollingContainer.clientWidth,
       behavior: "smooth"
     });
 
-    console.log("スクロール左！")
-
     setIsDisplayScrollingRightButton(true);
 
-    if (scrollContainer.scrollLeft <= scrollContainer.clientWidth) {
+    if (scrollingContainer.scrollLeft <= scrollingContainer.clientWidth) {
       setIsDisplayScrollingLeftButton(false);
     }
   }
 
   const scrollRight = (): void => {
-    scrollContainer.scroll({
-      left: scrollContainer.scrollLeft + scrollContainer.clientWidth,
+    scrollingContainer.scroll({
+      left: scrollingContainer.scrollLeft + scrollingContainer.clientWidth,
       behavior: "smooth"
     });
 
     setIsDisplayScrollingLeftButton(true);
 
     if (
-      scrollContainer.scrollWidth - (scrollContainer.scrollLeft + scrollContainer.clientWidth) <=
-      scrollContainer.clientWidth
+      scrollingContainer.scrollWidth - (scrollingContainer.scrollLeft + scrollingContainer.clientWidth) <=
+      scrollingContainer.clientWidth
     ) {
       setIsDisplayScrollingRightButton(false);
     }
@@ -52,39 +50,37 @@ export const CardsFlow: VFC = memo(() => {
 
 
   useEffect(() => {
-    scrollContainer = ref!.current!;
+    scrollingContainer = ref!.current!;
   },[ isDisplayScrollingRightButton, isDisplayScrollingLeftButton ])
 
   return (
-    <>
-      <div className={styles.cardsFlow}>
+    <div className={styles.cardsFlow}>
 
-        <div
-          className={`${styles.btn} ${styles.scrollingLeftButton}`}
-          onClick={scrollLeft}
-          style={{display: isDisplayScrollingLeftButton ? "inline-block" : "none"}}
-          role="button"
-          aria-label="カードを左へスクロールする">{'<'}
-        </div>
-        <div
-          className={`${styles.btn} ${styles.scrollingRightButton}`}
-          style={{display: isDisplayScrollingRightButton ? "inline-block" : "none"}}
-          onClick={scrollRight}
-          role="button"
-          aria-label="カードを右へスクロールする">{'>'}
-        </div>
-
-
-        <div ref={ref} className={styles.scrollingContainer}>
-          {[...Array(10)].map((_, index) => (
-            <Card
-              key={index}
-              className={styles.card}
-            />
-          ))}
-        </div>
-
+      <div
+        className={`${styles.btn} ${styles.scrollingLeftButton}`}
+        onClick={scrollLeft}
+        style={{display: isDisplayScrollingLeftButton ? "inline-block" : "none"}}
+        role="button"
+        aria-label="カードを左へスクロールする">{'<'}
       </div>
-    </>
+      <div
+        className={`${styles.btn} ${styles.scrollingRightButton}`}
+        style={{display: isDisplayScrollingRightButton ? "inline-block" : "none"}}
+        onClick={scrollRight}
+        role="button"
+        aria-label="カードを右へスクロールする">{'>'}
+      </div>
+
+
+      <div ref={ref} className={styles.scrollingContainer}>
+        {[...Array(10)].map((_, index) => (
+          <Card
+            key={index}
+            className={styles.card}
+          />
+        ))}
+      </div>
+
+    </div>
   );
 });
