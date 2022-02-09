@@ -1,7 +1,29 @@
 .cardsFlow {
 
-  .card {
+  position: relative;
 
-    width: 300px;
+
+  .scrollingContainer {
+
+    display: flex;
+    column-gap: 20px;
+
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+
+    &::-webkit-scrollbar {
+
+      display: none;
+    }
+
+
+    .card {
+
+      flex-shrink: 0;
+      width: 218px;
+    }
   }
 }
