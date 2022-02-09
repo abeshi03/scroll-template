@@ -11,7 +11,7 @@ export const Card: VFC = memo((props) => {
     <div className={styles.card}>
 
       <div
-        className={styles.image}
+        className={styles.thumbnail}
         role="img"
         style={{ backgroundImage: "url('https://dummyimage.com/100x100/03488d/fff')"}}
       ></div>
@@ -21,7 +21,7 @@ export const Card: VFC = memo((props) => {
       <div className={styles.userChip}>
 
         <div
-          className={styles.image}
+          className={styles.userImage}
           role="img"
           style={{ backgroundImage: "url('https://dummyimage.com/100x100/03488d/fff')"}}
         ></div>

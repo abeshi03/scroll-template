@@ -1,0 +1,45 @@
+.card {
+
+
+  .thumbnail {
+
+    background-size: cover;
+    background-position: center;
+    aspect-ratio: 1/1;
+  }
+
+
+  .title {
+
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+
+  .userChip {
+
+    display: grid;
+    align-items: center;
+    grid-template-columns: 20px 1fr;
+    column-gap: 10px;
+  }
+
+
+  .userImage {
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    background-size: cover;
+    background-position: center;
+  }
+
+
+  .userName {
+
+    color: #cbcbcb;
+  }
+}
