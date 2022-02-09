@@ -43,7 +43,7 @@ export const CardsFlow: VFC = memo(() => {
 
 
     /* overFlowも含めた全ての幅 - (スクロール幅 + 最大画面幅) <= 最大画面幅 */
-    /* 例 2360 - (774 + 774) 右のが大きい 774 ← falseが返る為非表示 */
+    /* 例 2360 - (774 + 774) <= 774 ← falseが返る為非表示 */
     if (
       scrollingContainer.scrollWidth - (scrollingContainer.scrollLeft + scrollingContainer.clientWidth) <=
       scrollingContainer.clientWidth
