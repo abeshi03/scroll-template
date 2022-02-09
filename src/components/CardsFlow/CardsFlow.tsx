@@ -1,5 +1,5 @@
 // - フレームワーク =======================================================================================================
-import React, {memo, useEffect, useRef, useState, VFC} from "react";
+import React, { memo, useEffect, useRef, useState, VFC } from "react";
 
 // - アセット ============================================================================================================
 import styles from "./CardsFlow.module.scss";
@@ -27,6 +27,7 @@ export const CardsFlow: VFC = memo(() => {
 
     setIsDisplayScrollingRightButton(true);
 
+    /* スクロールした幅 <= 最大画面幅 */
     if (scrollingContainer.scrollLeft <= scrollingContainer.clientWidth) {
       setIsDisplayScrollingLeftButton(false);
     }
@@ -40,6 +41,9 @@ export const CardsFlow: VFC = memo(() => {
 
     setIsDisplayScrollingLeftButton(true);
 
+
+    /* overFlowも含めた全ての幅 - (スクロール幅 + 最大画面幅) <= 最大画面幅 */
+    /* 例 2360 - (774 + 774) 右のが大きい 774 ← falseが返る為非表示 */
     if (
       scrollingContainer.scrollWidth - (scrollingContainer.scrollLeft + scrollingContainer.clientWidth) <=
       scrollingContainer.clientWidth
@@ -51,6 +55,8 @@ export const CardsFlow: VFC = memo(() => {
 
   useEffect(() => {
     scrollingContainer = ref!.current!;
+    console.log(scrollingContainer.scrollLeft);
+    console.log(scrollingContainer.clientWidth);
   },[ isDisplayScrollingRightButton, isDisplayScrollingLeftButton ])
 
   return (
