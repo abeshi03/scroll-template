@@ -8,4 +8,5 @@
 
 ### 動作確認環境
 
-
+chrome推奨
+[https://scroll-template.vercel.app/](https://scroll-template.vercel.app/)
