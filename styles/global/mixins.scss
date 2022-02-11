@@ -1,0 +1,54 @@
+@mixin EqualLeftAndRightMargin($value) {
+
+  margin-right: $value;
+  margin-left: $value;
+}
+
+
+@mixin EqualWidthAndHeight($value) {
+
+  width: $value;
+  height: $value;
+}
+
+
+@mixin EqualTopAndBottomPaddings($value) {
+
+  padding-bottom: $value;
+  padding-top: $value;
+}
+
+
+@mixin EqualLeftAndRightPaddings($value) {
+
+  padding-left: $value;
+  padding-right: $value;
+}
+
+
+@mixin FontSizeAndSpacing($size, $spacing) {
+
+  font-size: $size;
+  letter-spacing: $spacing;
+}
+
+
+@mixin PositionCenterMaxWidth($value) {
+
+  max-width: $value;
+  margin: 0 auto;
+}
+
+
+@mixin CenteredContentWithComputedSidePaddings($value) {
+
+  padding-left: calc(0.5 * (100% - #{$value}));
+  padding-right: calc(0.5 * (100% - #{$value}));
+}
+
+
+@mixin fillViewportWidthIgnoringParentPaddings() {
+
+  width: 100vw;
+  margin-left: calc(-0.5 * (100vh - 100%));
+}
