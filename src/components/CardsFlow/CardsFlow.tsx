@@ -1,5 +1,5 @@
 // - フレームワーク =======================================================================================================
-import React, { memo, useEffect, useRef, useState, VFC } from "react";
+import React, { memo, useRef, useState, VFC } from "react";
 
 // - アセット ============================================================================================================
 import styles from "./CardsFlow.module.scss";
@@ -12,30 +12,29 @@ import { Card } from "../Card/Card";
 // - コンポーネント =======================================================================================================
 export const CardsFlow: VFC = memo(() => {
 
-  const ref = useRef<HTMLDivElement | null>(null);
+  const scrollingContainer = useRef<HTMLDivElement>(null);
   const [ isDisplayScrollingRightButton, setIsDisplayScrollingRightButton ] = useState(true);
   const [ isDisplayScrollingLeftButton, setIsDisplayScrollingLeftButton ] = useState(false);
 
 
-  let scrollingContainer!: HTMLDivElement;
 
   const scrollLeft = (): void => {
-    scrollingContainer.scroll({
-      left: scrollingContainer.scrollLeft - scrollingContainer.clientWidth,
+    scrollingContainer.current!.scroll({
+      left: scrollingContainer.current!.scrollLeft - scrollingContainer.current!.clientWidth,
       behavior: "smooth"
     });
 
     setIsDisplayScrollingRightButton(true);
 
     /* スクロールした幅 <= 最大画面幅 */
-    if (scrollingContainer.scrollLeft <= scrollingContainer.clientWidth) {
+    if (scrollingContainer.current!.scrollLeft <= scrollingContainer.current!.clientWidth) {
       setIsDisplayScrollingLeftButton(false);
     }
   }
 
   const scrollRight = (): void => {
-    scrollingContainer.scroll({
-      left: scrollingContainer.scrollLeft + scrollingContainer.clientWidth,
+    scrollingContainer.current!.scroll({
+      left: scrollingContainer.current!.scrollLeft + scrollingContainer.current!.clientWidth,
       behavior: "smooth"
     });
 
@@ -45,17 +44,13 @@ export const CardsFlow: VFC = memo(() => {
     /* overFlowも含めた全ての幅 - (スクロール幅 + 最大画面幅) <= 最大画面幅 */
     /* 例 2360 - (774 + 774) <= 774 ← falseが返る為非表示 */
     if (
-      scrollingContainer.scrollWidth - (scrollingContainer.scrollLeft + scrollingContainer.clientWidth) <=
-      scrollingContainer.clientWidth
+      scrollingContainer.current!.scrollWidth - (scrollingContainer.current!.scrollLeft + scrollingContainer.current!.clientWidth) <=
+      scrollingContainer.current!.clientWidth
     ) {
       setIsDisplayScrollingRightButton(false);
     }
   }
 
-
-  useEffect(() => {
-    scrollingContainer = ref!.current!;
-  },[ isDisplayScrollingRightButton, isDisplayScrollingLeftButton ])
 
   return (
     <div className={styles.cardsFlow}>
@@ -76,7 +71,7 @@ export const CardsFlow: VFC = memo(() => {
       </div>
 
 
-      <div ref={ref} className={styles.scrollingContainer}>
+      <div ref={scrollingContainer} className={styles.scrollingContainer}>
         {[...Array(10)].map((_, index) => (
           <Card
             key={index}
