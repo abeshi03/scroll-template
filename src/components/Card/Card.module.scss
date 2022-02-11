@@ -5,7 +5,8 @@
 
     background-size: cover;
     background-position: center;
-    aspect-ratio: 1/1;
+    //aspect-ratio: 1/1; safariが対応していない
+    padding-top: 100%;
   }
 
 
