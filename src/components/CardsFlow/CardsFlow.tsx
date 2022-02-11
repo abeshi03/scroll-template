@@ -9,7 +9,7 @@ import { Card } from "../Card/Card";
 
 
 
-// - コンポーネント =======================================================================================================
+/* eslint-disable-next-line react/display-name */
 export const CardsFlow: VFC = memo(() => {
 
   const scrollingContainer = useRef<HTMLDivElement>(null);

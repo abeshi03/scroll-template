@@ -8,6 +8,7 @@ type Props = {
   className?: string;
 }
 
+/* eslint-disable-next-line react/display-name */
 export const Card: VFC<Props> = memo((props) => {
 
   const { className } = props;
